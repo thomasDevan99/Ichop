@@ -45,29 +45,31 @@ function CarouselComp() {
   //     return <div> Loading </div>;
   //   }
   return (
-    <Carousel
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      containerClass="react-multi-carousel-list"
-      itemClass="carousel-item-padding"
-      centerMode
-      sliderClass="react-multi-carousel-track"
-      infinite
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      deviceType={deviceType}
-      swipeable={false}
-      draggable={false}
-      autoPlay={deviceType !== "mobile" ? true : false}
-      autoPlaySpeed={1500}
-      keyBoardControl={true}
-      customTransition="all 1000ms"
-      transitionDuration={1000}
-    >
-      <CardComponent text="First Card" />
-      <CardComponent text="Second Card" />
-      <CardComponent text="Third Card" />
-      <CardComponent text="Fourth Card" />
-    </Carousel>
+    <div style={{ width: "1280px", margin: "auto" }}>
+      {/* <div style={{ width: "960px", margin: "auto" }}> */}
+      <Carousel
+        responsive={responsive}
+        ssr={true} // means to render carousel on server-side.
+        containerClass="react-multi-carousel-list"
+        itemClass="carousel-item-padding"
+        centerMode //</div>={false}
+        sliderClass="react-multi-carousel-track"
+        infinite={true}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        deviceType={deviceType}
+        autoPlay={deviceType !== "mobile" ? true : false}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all 1000ms"
+        transitionDuration={1000}
+        additionalTransfrom={-20 * 4}
+      >
+        <CardComponent text="First Card" />
+        <CardComponent text="Second Card" />
+        <CardComponent text="Third Card" />
+        <CardComponent text="Fourth Card" />
+      </Carousel>
+    </div>
   );
 }
 
