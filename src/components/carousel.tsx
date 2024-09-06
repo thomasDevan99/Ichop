@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, FreeMode } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+
 import CardComponent from "./card";
 import MobileDetect from "mobile-detect";
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 function CarouselComp() {
   let deviceType;
@@ -32,42 +22,42 @@ function CarouselComp() {
   } else {
     deviceType = "desktop";
   }
+  const modules = [Navigation, FreeMode];
 
-  console.log("deviceType", deviceType);
+  if (deviceType == "mobile") {
+    console.log("deviceType", deviceType);
+    modules.push(Autoplay);
+  }
 
-  //   const [isLoading, setLoading] = useState(true);
-
-  //   useEffect(() => {
-  //     setTimeout(() => setLoading(false), 3000);
-  //   }, []);
-
-  //   if (isLoading) {
-  //     return <div> Loading </div>;
-  //   }
   return (
-    <Carousel
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      containerClass="react-multi-carousel-list"
-      itemClass="carousel-item-padding"
-      centerMode
-      sliderClass="react-multi-carousel-track"
-      infinite
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      deviceType={deviceType}
-      swipeable={false}
-      draggable={false}
-      autoPlay={deviceType !== "mobile" ? true : false}
-      autoPlaySpeed={1500}
-      keyBoardControl={true}
-      customTransition="all 1000ms"
-      transitionDuration={1000}
-    >
-      <CardComponent text="First Card" />
-      <CardComponent text="Second Card" />
-      <CardComponent text="Third Card" />
-      <CardComponent text="Fourth Card" />
-    </Carousel>
+    <div style={{ width: "1280px", margin: "auto" }}>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={3}
+        loop
+        freeMode
+        grabCursor
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        navigation={true}
+        modules={modules}
+      >
+        <SwiperSlide>
+          <CardComponent text="First Card" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CardComponent text="Second Card" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CardComponent text="Third Card" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <CardComponent text="Fourth Card" />
+        </SwiperSlide>
+      </Swiper>
+    </div>
   );
 }
 

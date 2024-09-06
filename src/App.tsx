@@ -1,7 +1,6 @@
-import { useState } from "react";
 import companyLogo from "./assets/Ichop.jpeg";
-import CardComponent from "./components/card.tsx";
 import CarouselComp from "./components/carousel.tsx";
+import MenuBar from "./components/menuBar.tsx";
 
 import "./App.css";
 import "./components/carousel.css";
@@ -11,14 +10,14 @@ function App() {
 
   return (
     <>
-      <div>
+      <MenuBar />
+      <div className="page">
         <a href="http://localhost:5173/">
           <img src={companyLogo} />
         </a>
+        <h1>Ichop</h1>
+        <CarouselComp />
       </div>
-      <h1>Ichop</h1>
-      {/* <CardComponent /> */}
-      <CarouselComp />
     </>
   );
 }
